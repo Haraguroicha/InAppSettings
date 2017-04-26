@@ -246,12 +246,12 @@ NSString *const InAppSettingsTapNotification = @"InAppSettingsTapNotification";
         NSString *InAppURL = [setting valueForKey:InAppSettingsSpecifierInAppURL];
         NSString *InAppTwitter = [setting valueForKey:InAppSettingsSpecifierInAppTwitter];
         if(InAppURL){
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InAppURL]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InAppURL] options:@{} completionHandler:^(BOOL success) {}];
         }else if(InAppTwitter){
             if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"twitter:"]]){
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"twitter://user?screen_name=%@", InAppTwitter]]];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"twitter://user?screen_name=%@", InAppTwitter]] options:@{} completionHandler:^(BOOL success) {}];
             }else{
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", InAppTwitter]]];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", InAppTwitter]] options:@{} completionHandler:^(BOOL success) {}];
             }
         }
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
